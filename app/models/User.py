@@ -11,5 +11,6 @@ class User(Base):
     username = Column(String, unique=True, index=True, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
+    role = Column(String, nullable=False, default="customer")
 
     sales = relationship("Sale", back_populates="user", cascade="all, delete-orphan")

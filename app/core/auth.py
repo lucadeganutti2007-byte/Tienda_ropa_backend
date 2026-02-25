@@ -31,4 +31,8 @@ def get_current_user(
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
 
+    token_role = payload.get("role")
+    if token_role and not getattr(user, "role", None):
+        setattr(user, "role", token_role)
+
     return user
